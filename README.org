@@ -45,3 +45,7 @@
 #+BEGIN_SRC sh 
 (todoapp/todofrontend)> yarn start
 #+END_SRC 
+
+* 技术栈
+  - 后端 :: Django+Rest Framework+MySQL
+  - 前端 :: React.js+jQuery

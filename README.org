@@ -19,7 +19,7 @@
 
 ** 下载
 #+BEGIN_SRC sh 
-> git clone
+> git clone git@github.com:Grox-Ni/todoapp.git
 > cd todoapp
 #+END_SRC
 ** 后端

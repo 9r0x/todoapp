@@ -1,0 +1,46 @@
+* 功能Functions
+** 增加一个待办事项
+** 删除一个待办事项
+** 标记一个待办事项为已完成
+** 编辑一个待办事项的具体内容
+** 列出所有的待办事项
+** Demo
+[[./misc/Demo.gif]]
+
+
+* 安装 Installations
+** 数据库
+#+BEGIN_SRC sh 
+> mysql -u root -p 
+> 123456
+> CREATE DATABASE todolist;
+#+END_SRC
+
+** 下载
+#+BEGIN_SRC sh 
+> git clone
+> cd todoapp
+#+END_SRC
+** 后端
+#+BEGIN_SRC sh 
+(todoapp)> mkvirtualenv todobackend
+> pip install -r requirements.txt
+> cd todobackend
+> python manage.py migrate
+#+END_SRC
+** 前端
+#+BEGIN_SRC sh
+(todoapp)> cd todofrontend
+> yarn
+> yarn start
+#+END_SRC 
+
+* 运行Run
+** 后端(http://localhost:8000/)
+#+BEGIN_SRC sh 
+(todoapp/todobackend)> python manage.py runserver
+#+END_SRC 
+** 前端(http://localhost:3000/)
+#+BEGIN_SRC sh 
+(todoapp/todofrontend)> yarn start
+#+END_SRC 

@@ -5,24 +5,23 @@ class AddTodo extends Component {
 
 
     handleSubmit(e){
-        if(this.refs.title.value === "")
-        {alert("Title shouldn't be empty");}
-        else{this.props.addTodo(this.refs.title.value);}
-        e.preventDefault();
+        if(e.key === 'Enter'){
+            if(this.refs.title.value === "")
+            {alert("Title shouldn't be empty");}
+            else{this.props.addTodo(this.refs.title.value);}
+        }
     }
 
     render() {
         return (
-            <div className="header">
-              <h3>My Todo List</h3>
-              <input style={{color:'black'}}type="text" id="myInput" ref="title" placeholder="Title..." />
-              <span onClick={this.handleSubmit.bind(this)} className="addBtn">Add</span>
+              <header className="header">
+              <h1>My Todos</h1>
+              <input onKeyPress={this.handleSubmit.bind(this)} className='new-todo' style={{color:'black'}}type="text" id="myInput" ref="title" placeholder="Title..." />
               <br />
-            </div>
+              </header>
         );
     }
 }
-
 
 AddTodo.propTypes={
     addTodo: PropTypes.func

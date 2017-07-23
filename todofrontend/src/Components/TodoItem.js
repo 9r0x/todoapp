@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 class TodoItem extends Component {
     constructor(){
@@ -12,28 +13,49 @@ class TodoItem extends Component {
     edit(){
         this.setState({editing:true});
     }
-    save(id){
-        this.setState({editing:false});
-        let title=this.refs.title.value;
-        this.props.onSave(id,title);
-    }
-    toggleC(id,completed){
+    save(e){
+        if(e.key === 'Enter'){
+            let {id} =this.props.todo;
+            this.setState({editing:false});
+            let title=this.refs.title.value;
+            this.props.onSave(id,title);
+        }}
+    toggleC(){
+        let {id} =this.props.todo;
+        let {completed} =this.props.todo;
         this.props.onToggle(id,!completed);
     }
 
-    deleteTodo(id){
-        console.log(id);
+    onDestroy(){
+        let {id} =this.props.todo;
         this.props.onDelete(id);
     }
 
-    render() {
+    render(){
         let {todo} = this.props;
-        if(this.state.editing){
-            return(<li className="unchecked"><span onClick={this.save.bind(this,todo.id)} className="edit">{"\u2713"}</span><input type="text" ref="title" defaultValue={todo.title}/><span onClick={this.deleteTodo.bind(this,todo.id)} className="close">{"\u2716"}</span> </li>);}
-        else{if(todo.completed){
-            return (<li className="checked"><span onClick={this.edit.bind(this)} className="edit" >{"\u270E"}</span><strong onClick={this.toggleC.bind(this,todo.id,todo.completed)}>{todo.title}</strong><span onClick={this.deleteTodo.bind(this,todo.id)} className="close">{"\u2716"}</span> </li>);}
-             else{return (<li><span onClick={this.edit.bind(this)} className="edit">{"\u270E"}</span><strong onClick={this.toggleC.bind(this,todo.id,todo.completed)}>{todo.title}</strong><span onClick={this.deleteTodo.bind(this,todo.id)} className="close">{"\u2716"}</span></li>);}}
-    }
+        return (
+				    <li className={classNames({completed: todo.completed , editing: this.state.editing})}>
+					    <div className="view">
+						    <input
+							    className="toggle"
+							    type="checkbox"
+							    checked={todo.completed}
+							    onChange={this.toggleC.bind(this)}
+						      />
+						    <label onDoubleClick={this.edit.bind(this)}>
+							    {todo.title}
+						    </label>
+						    <button className="destroy" onClick={this.onDestroy.bind(this)} />
+					    </div>
+					    <input
+						    ref="editField"
+						    className="edit"
+                ref='title'
+						    defaultValue={todo.title}
+						    onKeyDown={this.save.bind(this)}
+					      />
+				    </li>
+		    );}
 }
 
 TodoItem.propTypes={

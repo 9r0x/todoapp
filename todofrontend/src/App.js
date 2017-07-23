@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import Todos from './Components/Todos';
 import AddTodo from './Components/AddTodo';
-import './App.css';
+
 class App extends Component {
     constructor(){
         super();
@@ -50,7 +50,7 @@ class App extends Component {
     }
     render() {
         return (
-            <div className="App">
+            <div className="todoapp">
               <AddTodo addTodo={this.handleAddTodo.bind(this)} />
               <Todos onDelete={this.handleDeleteTodo.bind(this)}  onToggle={this.handleToggleC.bind(this)} onSave={this.handleSaveTodo.bind(this)} todos={this.state.todos} />
             </div>
